@@ -8,6 +8,7 @@ logging:
   pattern.console: '%d{HH:mm:ss.SSS} %-5level %X{tuuid} %logger{100} : %msg%n'
   level:
     ROOT: INFO
+    pl.bsf.lukasz.koc.currencyaccounts: TRACE
 
 
 spring:
