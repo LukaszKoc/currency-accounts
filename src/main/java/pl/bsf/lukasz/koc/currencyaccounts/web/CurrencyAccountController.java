@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.bsf.lukasz.koc.currencyaccounts.DTO.CreateCurrencyAccountDTO;
 import pl.bsf.lukasz.koc.currencyaccounts.DTO.CurrencyAccountDTO;
+import pl.bsf.lukasz.koc.currencyaccounts.DTO.ExchangeRequestDTO;
+import pl.bsf.lukasz.koc.currencyaccounts.DTO.ExchangeResultDTO;
 import pl.bsf.lukasz.koc.currencyaccounts.service.CurrencyAccountService;
 
 @Tag(name = "Currency Account", description = "Currency Account operations")
@@ -48,5 +50,20 @@ public class CurrencyAccountController {
 
 		log.debug("Successfully fetched account with ID: {}", accountDTO.getId());
 		return accountDTO;
+	}
+
+	@Operation(summary = "Exchange amount in given currency",
+			description = "Withdraws ordered amount in ordered currency, by NBP exchange rate")
+	@ResponseStatus(HttpStatus.OK)
+	@PostMapping("/{id}/exchange")
+	public ExchangeResultDTO exchangeAndWithdraw(@PathVariable Long id, @Valid @RequestBody ExchangeRequestDTO request) {
+		log.info("Received request to exchange and withdraw for account Id {} {} {}",
+				id, request.getAmount(), request.getCurrency());
+
+		ExchangeResultDTO result = service.withdrawInCurrency(id, request.getAmount(), request.getCurrency());
+		log.debug("Successfully exchanged and withdrew {} {} to {} {} for id: {}",
+				request.getAmount(), request.getCurrency(),
+				result.getAmount(), result.getCurrency(), id);
+		return result;
 	}
 }

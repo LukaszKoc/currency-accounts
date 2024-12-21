@@ -1,6 +1,5 @@
 package pl.bsf.lukasz.koc.currencyaccounts.DTO;
 
-import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import pl.bsf.lukasz.koc.currencyaccounts.DTO.validator.ValidCurrency;
 import pl.bsf.lukasz.koc.currencyaccounts.model.Currency;
 
 @Slf4j
@@ -41,6 +41,7 @@ public class CreateCurrencyAccountDTO {
 		this.balance = insertedBalance;
 	}
 
-	@Nonnull
+	@NotNull
+	@ValidCurrency
 	private Currency currency;
 }
