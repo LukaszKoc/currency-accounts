@@ -30,3 +30,8 @@ spring:
     console:
       enabled: true
       path: /h2/console/${user.home}/currency-accounts
+
+nbp:
+  exchange:
+    rates:
+      url: http://api.nbp.pl/api/exchangerates/rates/A/

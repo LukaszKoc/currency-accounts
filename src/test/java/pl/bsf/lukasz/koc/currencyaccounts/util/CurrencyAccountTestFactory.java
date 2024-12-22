@@ -12,30 +12,30 @@ public class CurrencyAccountTestFactory {
 
 	public static final String LAST_NAME = "Doe";
 
-	public static final BigDecimal BALANCE = new BigDecimal("1000.00");
+	public static final BigDecimal THAUSAND = new BigDecimal("1000.00");
 
-	public static final Currency CURRENCY = Currency.PLN;
+	public static final Currency PLN = Currency.PLN;
 
 	public static final Long ACCOUNT_ID = 1L;
 
 	public static final CreateCurrencyAccountDTO SAMPLE_CREATE_CURRENCY_ACCOUNT_DTO =
-			createCreateCurrencyAccountDTO(FIRST_NAME, LAST_NAME, BALANCE, CURRENCY);
+			createCreateCurrencyAccountDTO(FIRST_NAME, LAST_NAME, THAUSAND, PLN);
 
 	public static final CurrencyAccount SAMPLE_CURRENCY_ACCOUNT =
 			CurrencyAccount.builder()
 					.id(1L)
 					.firstName(FIRST_NAME)
 					.lastName(LAST_NAME)
-					.balance(BALANCE)
-					.currency(CURRENCY)
+					.balance(THAUSAND)
+					.currency(PLN)
 					.build();
 
 	public static final CurrencyAccountDTO SAMPLE_CURRENCY_ACCOUNT_DTO = CurrencyAccountDTO.builder()
 			.id(1L)
 			.firstName(FIRST_NAME)
 			.lastName(LAST_NAME)
-			.balance(BALANCE)
-			.currency(CURRENCY)
+			.balance(THAUSAND)
+			.currency(PLN)
 			.build();
 
 	public static CreateCurrencyAccountDTO createCreateCurrencyAccountDTO(String firstName, String lastName, BigDecimal balance,

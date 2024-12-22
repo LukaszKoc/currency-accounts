@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "CURRENCY_ACCOUNTS")
-public class CurrencyAccount {
+public class CurrencyAccount implements CurrencyAccountI {
 
 	@Id
 	@GeneratedValue
@@ -33,10 +34,12 @@ public class CurrencyAccount {
 	@Column(nullable = false, length = 100)
 	private String lastName;
 
+	@DecimalMin(value = "0", message = "The funds on the account are insufficient to perform the operation.")
 	@Column(nullable = false, scale = 2)
 	private BigDecimal balance;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Currency currency;
+
 }
